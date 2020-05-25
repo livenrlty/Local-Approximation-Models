@@ -13,4 +13,4 @@ class FFT(BaseLAM):
         params = fftpack.fft(row)
         pred = fftpack.ifft(params)
         top_harmonics_idx = np.argsort(np.abs(params))[-self.n_harmonics - 1: -1]
-        return (pred, params[top_harmonics_idx])
+        return (pred.real, params[top_harmonics_idx])
