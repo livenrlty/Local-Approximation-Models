@@ -84,7 +84,6 @@ class Semor(BaseLAM):
             row_part = interpolated_row(times)
         row_part = row_part.flatten()
         shape_part = shape_part.flatten()
-
         # OK, we have both row values and shape values. Now we need to find out
         # how we lift and scale the profile.
 
@@ -92,7 +91,6 @@ class Semor(BaseLAM):
         X = np.hstack((np.ones((shape_part.size, 1)),
                        shape_part.reshape((-1, 1))))
         rgr.fit(X, row_part)
-        pred = rgr.predict(X)
         # w_1, w_2
         lift, scale = rgr.coef_
-        return (pred, np.array([lift, scale, shift, stretch, dist]))
+        return (row, np.array([lift, scale, shift, stretch, dist]))
