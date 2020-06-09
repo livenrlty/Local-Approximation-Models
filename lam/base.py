@@ -4,6 +4,7 @@ class BaseLAM:
     def __init__(self):
         self._preds = None
         self._params = None
+        self.name = None
 
     
     def fit_row(self, row):
